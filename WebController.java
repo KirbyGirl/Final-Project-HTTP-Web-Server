@@ -105,6 +105,7 @@ public class WebController {
             // routing logic to direct traffic
             String path = tokens[1]; // get the html end of a url
             System.out.println(path);
+            System.out.println(host);
             String filePath = "";
 
             // if website is paypal, return paypal html filepath
