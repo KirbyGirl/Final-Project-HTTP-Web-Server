@@ -80,14 +80,17 @@ public class WebController {
 
             // get the client's IP
             String clientIP = client.getInetAddress().getHostAddress();
+            System.out.println(clientIP);
 
             // set a list of IPs that are blocked
-            Set<String> blockedIPs = Set.of("10.2.1.10"); // example IP
+            //---------------PLACE BLOCKED IPS HERE: v
+            Set<String> blockedIPs = Set.of("");
 
             //auto return 404 if client is blocked
             if (blockedIPs.contains(clientIP)) {
                 error404(outTo);
                 client.close();
+                return;
             }
 
             String[] tokens = requestLine.split(" ");
@@ -101,6 +104,7 @@ public class WebController {
 
             // routing logic to direct traffic
             String path = tokens[1]; // get the html end of a url
+            System.out.println(path);
             String filePath = "";
 
             // if website is paypal, return paypal html filepath
@@ -116,6 +120,7 @@ public class WebController {
             if (!file.exists()) {
                 error404(outTo);
                 client.close();
+                return;
             }
 
             FileInputStream f = new FileInputStream(file);
